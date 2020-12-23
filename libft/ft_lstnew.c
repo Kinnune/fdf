@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 00:18:54 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/07/23 01:44:18 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:15:52 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	{
 		if (!(new_element->content = ft_memalloc(content_size)))
 			return (NULL);
-		ft_memcpy(new_element->content, content, content_size); 
+		ft_memcpy(new_element->content, content, content_size);
 		new_element->content_size = content_size;
 	}
 	new_element->next = NULL;

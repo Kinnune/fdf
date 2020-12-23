@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:07 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 14:10:18 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:32:17 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_convert_file(t_fdf *fdf, char *path)
 {
-	int fd;
-	int y;
-	char *line;
+	int		fd;
+	int		y;
+	char	*line;
 
 	y = 0;
 	if ((fd = open(path, O_RDONLY)) == -1)
@@ -28,9 +28,9 @@ void	ft_convert_file(t_fdf *fdf, char *path)
 	}
 	fdf->y_max = y;
 	if (!(fdf->col_len = (int *)malloc(sizeof(int) * y)))
-		exit (1);
+		exit(1);
 	if (!(fdf->map = (int **)malloc(sizeof(int *) * (y + 1))))
-		exit (1);
+		exit(1);
 	fdf->map[y] = 0;
 	y = 0;
 	fd = open(path, O_RDONLY);
@@ -43,8 +43,8 @@ void	ft_convert_file(t_fdf *fdf, char *path)
 
 void	ft_split_line(t_fdf *fdf, int y, char *line)
 {
-	char **line_2d;
-	int x;
+	char	**line_2d;
+	int		x;
 
 	x = 0;
 	line_2d = ft_strsplit(line, ' ');
@@ -52,7 +52,7 @@ void	ft_split_line(t_fdf *fdf, int y, char *line)
 	fdf->col_len[y] = x;
 	if (!(fdf->map[y] = (int *)malloc(sizeof(int) * x)))
 	{
-		exit (1);
+		exit(1);
 	}
 	while (x > 0)
 	{
@@ -67,7 +67,7 @@ int		ft_check_digit(int x, char **line_2d)
 	int i;
 
 	i = 0;
-	while(line_2d[x])
+	while (line_2d[x])
 	{
 		if (line_2d[x][0] == '-')
 		{
@@ -80,13 +80,9 @@ int		ft_check_digit(int x, char **line_2d)
 		while (line_2d[x][i])
 		{
 			if (ft_isdigit(line_2d[x][i]))
-			{
 				break ;
-			}
 			else
-			{
 				exit(1);
-			}
 			i++;
 		}
 		i = 0;

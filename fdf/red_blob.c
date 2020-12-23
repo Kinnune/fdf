@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:45 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 12:08:27 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:33:21 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ float	ft_diagonal_distance(t_fdf *fdf)
 	dis_x = abs(fdf->x0 - fdf->x1);
 	dis_y = abs(fdf->y - fdf->y1);
 	return (ft_max(dis_y, dis_x));
-}	
+}
 
 void	ft_round_point(t_fdf *fdf)
 {
@@ -40,7 +40,7 @@ void	ft_round_point(t_fdf *fdf)
 	fdf->delta_y = round(fdf->delta_y);
 }
 
-float ft_lerp(float start, float end, float t)
+float	ft_lerp(float start, float end, float t)
 {
 	return (start + t * (end - start));
 }
@@ -63,7 +63,7 @@ void	ft_red_blob(t_fdf *fdf)
 		fdf->delta_x = ft_lerp(fdf->x0, fdf->x1, fdf->t);
 		fdf->delta_y = ft_lerp(fdf->y0, fdf->y1, fdf->t);
 		ft_round_point(fdf);
-		if (fdf->delta_x >= 0 && fdf->delta_x < fdf->x_win 
+		if (fdf->delta_x >= 0 && fdf->delta_x < fdf->x_win
 			&& fdf->delta_y >= 0 && fdf->delta_y < fdf->y_win)
 		{
 			mlx_pixel_put(fdf->mlx_ptr, fdf->window, fdf->delta_x,

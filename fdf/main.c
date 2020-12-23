@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:32 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 15:12:29 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:17:52 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ t_fdf	*ft_fdf_init(t_fdf *fdf)
 {
 	fdf->mlx_ptr = mlx_init();
 	fdf->window = 0;
-	fdf->colour = mlx_get_color_value(fdf->mlx_ptr, 16777215);;
+	fdf->colour = mlx_get_color_value(fdf->mlx_ptr, 16777215);
 	fdf->name = 0;
 	fdf->x_max = 0;
 	fdf->y_max = 0;
 	fdf->map = 0;
 	fdf->xs = 0;
 	fdf->ys = 0;
-	fdf->col_len = 0;	
+	fdf->col_len = 0;
 	fdf->space = 10;
 	fdf->tilt = 3;
 	fdf->padding = 100;

@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:02:03 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 14:30:20 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:22:04 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_yx_malloc(t_fdf *fdf)
 	}
 	fdf->xs[fdf->y_max] = 0;
 	fdf->ys[fdf->y_max] = 0;
-	while(fdf->map[y])
+	while (fdf->map[y])
 	{
 		fdf->xs[y] = (int *)malloc(sizeof(int) * fdf->col_len[y]);
 		fdf->ys[y] = (int *)malloc(sizeof(int) * fdf->col_len[y]);
@@ -38,37 +38,26 @@ int		ft_yx_malloc(t_fdf *fdf)
 	return (1);
 }
 
-void	ft_yx_assign(t_fdf *fdf, char *view)
+void	ft_yx_assign(t_fdf *fdf, char *view, int x, int y)
 {
-	int y;
-	int x;
-
-	y = 0;
-	x = 0;
 	while (fdf->map[y])
 	{
 		while (x < fdf->col_len[y])
 		{
 			fdf->xs[y][x] = (x * fdf->space) + 1;
-			if (ft_strequ(view , "top"))
-			{
+			if (ft_strequ(view, "top"))
 				fdf->ys[y][x] = (y * fdf->space) + 1;
-			}
 			else
-			{
 				fdf->ys[y][x] = ((fdf->y_win / 2) - fdf->padding)
 				+ (fdf->map[y][x] * fdf->space);
-			}
 			if (fdf->ys[y][x] >= (fdf->y_win - fdf->padding)
 			|| fdf->xs[y][x] >= fdf->x_win)
-			{
 				if (fdf->space > 1)
 				{
 					fdf->space--;
-					ft_yx_assign(fdf, view);
+					ft_yx_assign(fdf, view, 0, 0);
 					return ;
 				}
-			}
 			x++;
 		}
 		x = 0;
@@ -100,7 +89,7 @@ void	ft_yx_tilted(t_fdf *fdf)
 
 void	ft_orthographic(t_fdf *fdf, char *view)
 {
-	ft_yx_assign(fdf, view);
+	ft_yx_assign(fdf, view, 0, 0);
 	ft_draw(fdf);
 }
 

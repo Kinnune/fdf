@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:04:47 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/08/16 14:13:16 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:16:31 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-
 # define BUFF_SIZE	8
 # define FD_SIZE	1024
-int					get_next_line(const int fd, char **line);
 
+int					get_next_line(const int fd, char **line);
 
 char				**ft_free2d(char **array_2d);
 
