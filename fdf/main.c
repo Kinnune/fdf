@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:32 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 15:17:52 by ekinnune         ###   ########.fr       */
+/*   Updated: 2020/12/23 15:57:06 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		main(int argc, char **argv)
 	ft_convert_file(fdf, argv[1]);
 	ft_new_window(fdf, 1024, 768, argv[1]);
 	ft_yx_malloc(fdf);
-	ft_yx_assign(fdf, "top");
+	ft_yx_assign(fdf, "top", 0, 0);
 	ft_tilted_view(fdf);
 	mlx_key_hook(fdf->window, ft_key_input, fdf);
 	mlx_loop(fdf->mlx_ptr);

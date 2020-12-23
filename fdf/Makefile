@@ -13,16 +13,18 @@ LIBS = ../libft/libft.a libmlx.dylib
 $(NAME): all
 
 all:
+ifneq ("$(wildcard fdf)","fdf")
 	make -C ../libft
 	make -C ../minilibx_mms_20191025_beta
 	mv ../minilibx_mms_20191025_beta/libmlx.dylib .
 	gcc $(FLAGS) $(NAME) $(FILES) $(LIBS)
+endif
 
 libft:
 	make -C ../libft
 
 minilibx:
-	make -C minilibx_mms_20191025_beta
+	make -C ../minilibx_mms_20191025_beta
 
 clean:
 	make clean -C ../libft
@@ -33,4 +35,5 @@ fclean: clean
 	rm -fr libmlx.dylib
 	rm -fr $(NAME)
 
-re: fclean all
+re: fclean
+	make all
