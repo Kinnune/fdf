@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:00:46 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 13:43:36 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/03 14:28:44 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_draw_horizontal(t_fdf *fdf)
 			fdf->x1 = fdf->xs[y][x + 1];
 			fdf->y0 = fdf->padding + fdf->ys[y][x];
 			fdf->y1 = fdf->padding + fdf->ys[y][x + 1];
-			ft_red_blob(fdf);
+			ft_draw_line(fdf);
 			x++;
 		}
 		x = 0;
@@ -50,7 +50,7 @@ void	ft_draw_vertical(t_fdf *fdf)
 			fdf->x1 = fdf->xs[y + 1][x];
 			fdf->y0 = fdf->padding + fdf->ys[y][x];
 			fdf->y1 = fdf->padding + fdf->ys[y + 1][x];
-			ft_red_blob(fdf);
+			ft_draw_line(fdf);
 			x++;
 		}
 		x = 0;

@@ -2,7 +2,7 @@
 NAME = fdf
 
 FILES = main.c file_save_check.c helpers.c red_blob.c xs_and_ys.c \
-		draw.c
+		draw.c hud.c
 
 OFILES = $(FILES:.c=.o)
 
@@ -13,12 +13,13 @@ LIBS = ../libft/libft.a libmlx.dylib
 $(NAME): all
 
 all:
-ifneq ("$(wildcard fdf)","fdf")
 	make -C ../libft
 	make -C ../minilibx_mms_20191025_beta
 	mv ../minilibx_mms_20191025_beta/libmlx.dylib .
 	gcc $(FLAGS) $(NAME) $(FILES) $(LIBS)
-endif
+
+relink:
+	gcc $(FILES) $(LIBS)
 
 libft:
 	make -C ../libft

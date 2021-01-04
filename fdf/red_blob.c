@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:45 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 15:33:21 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/03 14:29:03 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ float	ft_lerp(float start, float end, float t)
 	return (start + t * (end - start));
 }
 
-void	ft_red_blob(t_fdf *fdf)
+void	ft_draw_line(t_fdf *fdf)
 {
 	float step;
 	float n;

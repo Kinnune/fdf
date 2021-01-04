@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:02:03 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 15:22:04 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/03 14:23:52 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_yx_assign(t_fdf *fdf, char *view, int x, int y)
 				fdf->ys[y][x] = (y * fdf->space) + 1;
 			else
 				fdf->ys[y][x] = ((fdf->y_win / 2) - fdf->padding)
-				+ (fdf->map[y][x] * fdf->space);
+				- (fdf->map[y][x] * fdf->space);
 			if (fdf->ys[y][x] >= (fdf->y_win - fdf->padding)
 			|| fdf->xs[y][x] >= fdf->x_win)
 				if (fdf->space > 1)
@@ -78,7 +78,7 @@ void	ft_yx_tilted(t_fdf *fdf)
 		{
 			fdf->xs[y][x] = (x * fdf->space) + ((fdf->y_max * fdf->space)
 			- (y * fdf->space));
-			fdf->ys[y][x] = ((y * fdf->space) - (fdf->map[y][x] * fdf->tilt))
+			fdf->ys[y][x] = ((y * fdf->space) - (round(fdf->map[y][x] * fdf->tilt)))
 			+ (x * fdf->space);
 			x++;
 		}

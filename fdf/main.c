@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:32 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 15:57:06 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/04 10:40:08 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_fdf	*ft_fdf_init(t_fdf *fdf)
 	fdf->ys = 0;
 	fdf->col_len = 0;
 	fdf->space = 10;
-	fdf->tilt = 3;
+	fdf->tilt = 1;
 	fdf->padding = 100;
 	fdf->x0 = 0;
 	fdf->y0 = 0;
@@ -53,10 +53,12 @@ int		main(int argc, char **argv)
 	}
 	ft_fdf_init(fdf);
 	ft_convert_file(fdf, argv[1]);
-	ft_new_window(fdf, 1024, 768, argv[1]);
+//1024
+	ft_new_window(fdf, 768, 768, argv[1]);
 	ft_yx_malloc(fdf);
 	ft_yx_assign(fdf, "top", 0, 0);
-	ft_tilted_view(fdf);
+	ft_orthographic(fdf, "top");
+	ft_make_border(fdf);
 	mlx_key_hook(fdf->window, ft_key_input, fdf);
 	mlx_loop(fdf->mlx_ptr);
 	return (0);

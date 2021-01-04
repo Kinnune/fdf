@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:07 by ekinnune          #+#    #+#             */
-/*   Updated: 2020/12/23 15:32:17 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/04 10:39:47 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void	ft_convert_file(t_fdf *fdf, char *path)
 	char	*line;
 
 	y = 0;
+	if ((fd = open(path, O_DIRECTORY)) > 0)
+		exit(0);
 	if ((fd = open(path, O_RDONLY)) == -1)
 		exit(1);
 	while (get_next_line(fd, &line))
-	{
 		y++;
-		free(line);
-	}
 	fdf->y_max = y;
 	if (!(fdf->col_len = (int *)malloc(sizeof(int) * y)))
 		exit(1);
