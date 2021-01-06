@@ -1,39 +1,36 @@
 
 NAME = fdf
 
-FILES = main.c file_save_check.c helpers.c red_blob.c xs_and_ys.c \
-		draw.c hud.c
+FILES = main.c file_save_check.c helpers.c red_blob.c xs_and_ys.c draw.c math.c
 
 OFILES = $(FILES:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra -o
+FLAGS = -Wall -Werror -Wextra
 
-LIBS = ../libft/libft.a libmlx.dylib
+LIBS = -L ../libft -l ft -L ../minilibx -l mlx -L /usr/X11/lib -l X11 -l Xext
 
-$(NAME): all
+.PHONY: all libft minilibx clean fclean re
 
-all:
-	make -C ../libft
-	make -C ../minilibx_mms_20191025_beta
-	mv ../minilibx_mms_20191025_beta/libmlx.dylib .
-	gcc $(FLAGS) $(NAME) $(FILES) $(LIBS)
+all: $(NAME)
 
-relink:
-	gcc $(FILES) $(LIBS)
+$(NAME): $(OFILES) libft minilibx
+	gcc -o $(NAME) $(OFILES) $(LIBS)
+
+$(OFILES):
+	gcc $(FLAGS) -c $(FILES)
 
 libft:
 	make -C ../libft
 
 minilibx:
-	make -C ../minilibx_mms_20191025_beta
+	make -C ../minilibx
 
 clean:
+	rm -fr $(OFILES)
 	make clean -C ../libft
-	make clean -C ../minilibx_mms_20191025_beta
 
 fclean: clean
-	make fclean -C ../libft
-	rm -fr libmlx.dylib
+	make clean -C ../minilibx
 	rm -fr $(NAME)
 
 re: fclean

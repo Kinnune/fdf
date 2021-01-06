@@ -6,25 +6,26 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:07 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/04 10:39:47 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/05 18:09:06 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_convert_file(t_fdf *fdf, char *path)
+void	ft_convert_file(t_fdf *fdf, char *path, int y)
 {
 	int		fd;
-	int		y;
 	char	*line;
 
-	y = 0;
 	if ((fd = open(path, O_DIRECTORY)) > 0)
-		exit(0);
+		exit(1);
 	if ((fd = open(path, O_RDONLY)) == -1)
 		exit(1);
 	while (get_next_line(fd, &line))
+	{
+		free(line);
 		y++;
+	}
 	fdf->y_max = y;
 	if (!(fdf->col_len = (int *)malloc(sizeof(int) * y)))
 		exit(1);

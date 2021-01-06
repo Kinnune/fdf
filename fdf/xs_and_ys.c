@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:02:03 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/03 14:23:52 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/06 14:08:35 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	ft_yx_assign(t_fdf *fdf, char *view, int x, int y)
 		while (x < fdf->col_len[y])
 		{
 			fdf->xs[y][x] = (x * fdf->space) + 1;
-			if (ft_strequ(view, "top"))
-				fdf->ys[y][x] = (y * fdf->space) + 1;
-			else
+			if (ft_strequ(view, "side"))
 				fdf->ys[y][x] = ((fdf->y_win / 2) - fdf->padding)
 				- (fdf->map[y][x] * fdf->space);
+			else
+				fdf->ys[y][x] = (y * fdf->space) + 1;
 			if (fdf->ys[y][x] >= (fdf->y_win - fdf->padding)
 			|| fdf->xs[y][x] >= fdf->x_win)
-				if (fdf->space > 1)
+				if (fdf->space > 1 && ft_strequ(view, "first"))
 				{
 					fdf->space--;
 					ft_yx_assign(fdf, view, 0, 0);
@@ -71,9 +71,9 @@ void	ft_yx_tilted(t_fdf *fdf)
 	int x;
 
 	y = 0;
-	x = 0;
 	while (fdf->map[y])
 	{
+		x = 0;
 		while (x < fdf->col_len[y])
 		{
 			fdf->xs[y][x] = (x * fdf->space) + ((fdf->y_max * fdf->space)
@@ -82,7 +82,6 @@ void	ft_yx_tilted(t_fdf *fdf)
 			+ (x * fdf->space);
 			x++;
 		}
-		x = 0;
 		y++;
 	}
 }
@@ -90,11 +89,11 @@ void	ft_yx_tilted(t_fdf *fdf)
 void	ft_orthographic(t_fdf *fdf, char *view)
 {
 	ft_yx_assign(fdf, view, 0, 0);
-	ft_draw(fdf);
+	ft_draw(fdf, 0);
 }
 
 void	ft_tilted_view(t_fdf *fdf)
 {
 	ft_yx_tilted(fdf);
-	ft_draw(fdf);
+	ft_draw(fdf, 0);
 }
