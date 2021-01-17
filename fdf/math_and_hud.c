@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   math_and_hud.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:18 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/06 14:56:08 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/08 16:26:40 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ float	ft_max(float num1, float num2)
 	{
 		return (num2);
 	}
-}
-
-void	ft_round_point(t_fdf *fdf)
-{
-	fdf->delta_x = round(fdf->delta_x);
-	fdf->delta_y = round(fdf->delta_y);
 }
 
 float	ft_abs(float num)
@@ -49,7 +43,37 @@ float	ft_diagonal_distance(t_fdf *fdf)
 	return (ft_max(dis_y, dis_x));
 }
 
-float	ft_lerp(float start, float end, float t)
+void	ft_lines(t_fdf *fdf, int colour, int height, int i)
 {
-	return (start + t * (end - start));
+	if (i % 5 == 0 && (i <= 75 || i >= 685))
+	{
+		while (--height)
+		{
+			mlx_pixel_put(fdf->mlx_ptr, fdf->window, i, height, colour);
+		}
+	}
+}
+
+void	ft_instructions(t_fdf *fdf)
+{
+	char	*instructions1;
+	char	*instructions2;
+	char	cat_instru[200];
+	int		colour;
+	int		i;
+
+	colour = mlx_get_color_value(fdf->mlx_ptr, 16711680);
+	instructions1 = "Press LEFT for side view and RIGHT for top view. ";
+	instructions2 = "UP and DOWN rescale in a tilted scene. ESC exits.";
+	ft_strcat(cat_instru, instructions1);
+	ft_strcat(cat_instru, instructions2);
+	mlx_string_put(fdf->mlx_ptr, fdf->window, 88, 12, colour, cat_instru);
+	i = 0;
+	while (i < fdf->x_win)
+	{
+		ft_lines(fdf, colour, 14, i);
+		mlx_pixel_put(fdf->mlx_ptr, fdf->window, i, 14, colour);
+		mlx_pixel_put(fdf->mlx_ptr, fdf->window, i, 0, colour);
+		i++;
+	}
 }

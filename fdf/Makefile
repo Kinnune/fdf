@@ -1,11 +1,13 @@
-
+#fdf makefile ekinnune
 NAME = fdf
 
-FILES = main.c file_save_check.c helpers.c red_blob.c xs_and_ys.c draw.c math.c
+CC = gcc
+
+CFLAGS = -c -Wall -Werror -Wextra
+
+FILES = main.c file_save_check.c helpers.c red_blob.c xs_and_ys.c draw.c math_and_hud.c
 
 OFILES = $(FILES:.c=.o)
-
-FLAGS = -Wall -Werror -Wextra
 
 LIBS = -L ../libft -l ft -L ../minilibx -l mlx -L /usr/X11/lib -l X11 -l Xext
 
@@ -13,11 +15,14 @@ LIBS = -L ../libft -l ft -L ../minilibx -l mlx -L /usr/X11/lib -l X11 -l Xext
 
 all: $(NAME)
 
-$(NAME): $(OFILES) libft minilibx
-	gcc -o $(NAME) $(OFILES) $(LIBS)
+$(NAME): $(FILES)
+	make $(OFILES)
+	make libft
+	make minilibx
+	$(CC) -o $(NAME) $(OFILES) $(LIBS)
 
-$(OFILES):
-	gcc $(FLAGS) -c $(FILES)
+$(OFILES): $(FILES)
+	$(CC) $(CFLAGS) $(FILES)
 
 libft:
 	make -C ../libft
@@ -34,4 +39,4 @@ fclean: clean
 	rm -fr $(NAME)
 
 re: fclean
-	make all
+	make

@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:02:03 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/06 14:08:35 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:50:39 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ void	ft_yx_tilted(t_fdf *fdf)
 		while (x < fdf->col_len[y])
 		{
 			fdf->xs[y][x] = (x * fdf->space) + ((fdf->y_max * fdf->space)
-			- (y * fdf->space));
-			fdf->ys[y][x] = ((y * fdf->space) - (round(fdf->map[y][x] * fdf->tilt)))
+				- (y * fdf->space));
+			fdf->ys[y][x] = ((y * fdf->space)
+				- (round(fdf->map[y][x] * fdf->tilt)))
 			+ (x * fdf->space);
 			x++;
 		}

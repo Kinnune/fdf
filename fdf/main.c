@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:32 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/06 13:50:50 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/08 16:41:03 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ t_fdf	*ft_fdf_init(t_fdf *fdf)
 
 int		main(int argc, char **argv)
 {
-	t_fdf *fdf;
-	int bpp;
-	int img_w;
-	int endian;
+	t_fdf	*fdf;
+	int		bpp;
+	int		img_w;
+	int		endian;
 
 	if (argc != 2)
 		ft_usage();
@@ -59,10 +59,9 @@ int		main(int argc, char **argv)
 	ft_yx_assign(fdf, "first", 0, 0);
 	fdf->image = mlx_new_image(fdf->mlx_ptr, 768, 768);
 	fdf->img_data = mlx_get_data_addr(fdf->image, &bpp, &img_w, &endian);
-	ft_draw(fdf, 0);	
+	ft_draw(fdf, 0);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->window, fdf->image, 0, 15);
 	ft_instructions(fdf);
-	system("leaks fdf");
 	mlx_key_hook(fdf->window, ft_key_input, fdf);
 	mlx_loop(fdf->mlx_ptr);
 	return (0);

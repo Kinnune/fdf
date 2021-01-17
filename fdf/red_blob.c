@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:01:45 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/06 14:56:00 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:48:50 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,24 @@ void	ft_manipulate_image(t_fdf *fdf, int erease)
 	else
 	{
 		fdf->img_data[
-			(int)((fdf->delta_y * fdf->x_win) + fdf->delta_x) * 4]
-				= fdf->colour;
+			(int)((fdf->delta_y * fdf->x_win) + fdf->delta_x) * 4
+				] = fdf->colour;
 		fdf->img_data[
-			(int)(((fdf->delta_y * fdf->x_win) + fdf->delta_x) * 4) + 1]
-				= fdf->colour;
+			(int)(((fdf->delta_y * fdf->x_win) + fdf->delta_x) * 4) + 1
+				] = fdf->colour;
 		fdf->img_data[
-			(int)(((fdf->delta_y * fdf->x_win) + fdf->delta_x) * 4) + 2]
-				= fdf->colour;
+			(int)(((fdf->delta_y * fdf->x_win) + fdf->delta_x) * 4) + 2
+				] = fdf->colour;
 	}
+}
+
+float	ft_lerp(float start, float end, float t)
+{
+	return (start + t * (end - start));
+}
+
+void	ft_round_point(t_fdf *fdf)
+{
+	fdf->delta_x = round(fdf->delta_x);
+	fdf->delta_y = round(fdf->delta_y);
 }

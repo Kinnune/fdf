@@ -6,7 +6,7 @@
 /*   By: ekinnune <ekinnune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 12:02:03 by ekinnune          #+#    #+#             */
-/*   Updated: 2021/01/06 14:57:20 by ekinnune         ###   ########.fr       */
+/*   Updated: 2021/01/08 15:54:47 by ekinnune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include "../minilibx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
-
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <stdio.h>
 
 typedef	struct	s_fdf
 {
@@ -61,11 +57,13 @@ void			ft_draw_vertical(t_fdf *fdf, int erease);
 float			ft_max(float num1, float num2);
 float			ft_abs(float num);
 float			ft_diagonal_distance(t_fdf *fdf);
-void			ft_round_point(t_fdf *fdf);
-float			ft_lerp(float start, float end, float t);
+void			ft_instructions(t_fdf *fdf);
+void			ft_lines(t_fdf *fdf, int colour, int height, int i);
 
 void			ft_draw_line(t_fdf *fdf, int erease);
 void			ft_manipulate_image(t_fdf *fdf, int erease);
+float			ft_lerp(float start, float end, float t);
+void			ft_round_point(t_fdf *fdf);
 
 void			ft_yx_tilted(t_fdf *fdf);
 int				ft_yx_malloc(t_fdf *fdf);
